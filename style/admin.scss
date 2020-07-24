@@ -1,0 +1,21 @@
+$bootstrap-sm: 576px;
+$bootstrap-md: 768px;
+$bootstrap-lg: 992px;
+$bootstrap-xl: 1200px;
+
+
+.sidebar-menu {
+  @media (min-width: $bootstrap-md) {
+    min-height: 94vh;
+  }
+}
+
+//.sidebar-menu {
+//  min-height: 94vh;
+//}
+
+.card-img-top {
+  height: 25vh;
+  object-fit: cover;
+  object-position: center;
+}

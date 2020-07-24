@@ -1,0 +1,33 @@
+$colormain: #EDA4B2;
+$colorsecondary: #6E4C52;
+$colorsecondary2: #AD7882;
+$colorsecondary3: #D4929F;
+$colorsecondary4: #BAAAA6;
+
+img {
+  width: 100%;
+}
+
+.logo {
+  height: 1.5rem;
+  width: 1.5rem;
+  opacity: 0.4;
+}
+
+.jumbotron {
+  //background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url("../media/hero.jpg");
+  background-image: url("../media/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+}
+
+.card-img-top {
+  height: 35vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-footer {
+  background-color: white;
+}

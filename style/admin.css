@@ -1,0 +1,13 @@
+@media (min-width: 768px) {
+  .sidebar-menu {
+    min-height: 94vh;
+  }
+}
+
+.card-img-top {
+  height: 25vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+/*# sourceMappingURL=admin.css.map */

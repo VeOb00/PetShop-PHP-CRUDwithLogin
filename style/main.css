@@ -1,0 +1,28 @@
+img {
+  width: 100%;
+}
+
+.logo {
+  height: 1.5rem;
+  width: 1.5rem;
+  opacity: 0.4;
+}
+
+.jumbotron {
+  background-image: url("../media/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+}
+
+.card-img-top {
+  height: 35vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-footer {
+  background-color: white;
+}
+
+/*# sourceMappingURL=main.css.map */
