@@ -111,6 +111,7 @@ if ($loggedAdmin) {
                 $id = $_POST['id'];
 
                 $sql = "delete from cr11_vedrana_petadoption.users where id = $id";
+                echo $sql;
 
                 if (mysqli_query($conn, $sql)) {
                     echo "<div>

@@ -129,6 +129,7 @@ $resultUsers = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.users
                 } else if ($resultUsers->num_rows == 1) {
                     $row = $resultUsers->fetch_assoc();
                     echo "only 1 result to show";
+//                    todo edit 1 results
                 } else {
                     $rows = $resultUsers->fetch_all(MYSQLI_ASSOC);
                     foreach ($rows as $value) {
@@ -155,7 +156,7 @@ $resultUsers = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.users
                             <td><input class="btn btn-success form-control-sm btn-sm" type="submit" value="Update Status"></td>
                             </form>
                             <td>
-                                <form action="php_actions/a_delete_user.php">
+                                <form action="php_actions/a_delete_user.php" method="post">
                                     <input type="hidden" name="id" value="<?= $id ?>">
                                     <input class="btn btn-danger form-control-sm btn-sm"type="submit" value="Delete User">
                                 </form>
