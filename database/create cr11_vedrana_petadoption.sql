@@ -7,7 +7,7 @@ create table if not exists animals
     id            int                     not null auto_increment,
     name          varchar(50)             not null,
     date_of_birth date                    not null,
-    image         varchar(250)            not null default 'image.jpg',
+    image         varchar(250)            not null default 'placeholder.jpg',
     size          enum ('small', 'large') not null,
     type          varchar(50)             not null,
     location      varchar(250)            not null,

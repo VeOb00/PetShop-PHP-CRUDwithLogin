@@ -36,7 +36,7 @@ if ($loggedUser) {
     $res = mysqli_query($conn, "SELECT * FROM cr11_vedrana_petadoption.users WHERE id=" . $_SESSION['superadmin']);
     $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
 }
-$resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age from cr11_vedrana_petadoption.animals WHERE date_of_birth < CURRENT_DATE - INTERVAL 96 month");
+$resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age from cr11_vedrana_petadoption.animals WHERE date_of_birth > CURRENT_DATE - INTERVAL 96 month");
 
 ?>
 
@@ -79,10 +79,10 @@ $resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birt
                     <li class="nav-item">
                         <a class="nav-link" href="small_animals.php">Small animals</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="senior_animals.php">Senior animals</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item active">
                         <a class="nav-link" href="general.php">Under 8 Years</a>
                     </li>
                     <li class="nav-item">

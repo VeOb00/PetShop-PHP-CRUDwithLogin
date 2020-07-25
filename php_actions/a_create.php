@@ -130,9 +130,12 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 $hobbies = getDatabaseCompatibleValue('hobbies');
                 $id = $_POST['id'];
             }
-            $basename = basename($_FILES["image"]["name"]);
-            $uploaded_file_path = "../upload/" . $basename;
-            move_uploaded_file($_FILES["image"]["tmp_name"], $uploaded_file_path);
+            if (!isset($_FILES["image"]) && $_FILES["image"]["error"] != UPLOAD_ERR_NO_FILE) {
+                $basename = basename($_FILES["image"]["name"]);
+                $uploaded_file_path = "../upload/" . $basename;
+                move_uploaded_file($_FILES["image"]["tmp_name"], $uploaded_file_path);
+            } else
+                $basename = 'placeholder.jpg';
 
             $sql = "insert into cr11_vedrana_petadoption.animals (name, date_of_birth, image, size, type, location, gender, description, hobbies) 
                     values ('$name', '$date_of_birth', '$basename', '$size', '$type', '$location', '$gender', '$description', '$hobbies')";

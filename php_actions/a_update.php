@@ -33,7 +33,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
 
 ?>
 
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -108,39 +108,39 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
         </div>
         <div class="row ml-3 mt-5">
 
-                <?php
+            <?php
 
-                function getDatabaseCompatibleValue($parameter)
-                {
-                    $value = $_POST[$parameter];
-                    if (isset($value) || $value != "") {
-                        $trimed_string = trim($value);
-                        $stripped_string = strip_tags($trimed_string);
-                        $htmlspecialchars_string = htmlspecialchars($stripped_string);
-                        $replaced_string = str_replace("'", "\'", $htmlspecialchars_string);
-                        return $replaced_string;
-                    }
-                    return "null";
+            function getDatabaseCompatibleValue($parameter)
+            {
+                $value = $_POST[$parameter];
+                if (isset($value) || $value != "") {
+                    $trimed_string = trim($value);
+                    $stripped_string = strip_tags($trimed_string);
+                    $htmlspecialchars_string = htmlspecialchars($stripped_string);
+                    $replaced_string = str_replace("'", "\'", $htmlspecialchars_string);
+                    return $replaced_string;
                 }
+                return "null";
+            }
 
-                if ($_POST) {
-                    $name = getDatabaseCompatibleValue('name');
-                    $date_of_birth = getDatabaseCompatibleValue('date_of_birth');
-                    $image = getDatabaseCompatibleValue('image');
-                    $size = getDatabaseCompatibleValue('size');
-                    $type = getDatabaseCompatibleValue("type");
-                    $location = getDatabaseCompatibleValue('location');
-                    $gender = getDatabaseCompatibleValue('gender');
-                    $description = getDatabaseCompatibleValue('description');
-                    $hobbies = getDatabaseCompatibleValue('hobbies');
-                    $id = $_POST['id'];
-                }
+            if ($_POST) {
+                $name = getDatabaseCompatibleValue('name');
+                $date_of_birth = getDatabaseCompatibleValue('date_of_birth');
+                $image = getDatabaseCompatibleValue('image');
+                $size = getDatabaseCompatibleValue('size');
+                $type = getDatabaseCompatibleValue("type");
+                $location = getDatabaseCompatibleValue('location');
+                $gender = getDatabaseCompatibleValue('gender');
+                $description = getDatabaseCompatibleValue('description');
+                $hobbies = getDatabaseCompatibleValue('hobbies');
+                $id = $_POST['id'];
+            }
 
-                if (isset($_FILES["image"]) && $_FILES["image"]["error"] != UPLOAD_ERR_NO_FILE) {
-                    $basename = basename($_FILES["image"]["name"]);
-                    $uploaded_file_path = "../upload/" . $basename;
-                    move_uploaded_file($_FILES["image"]["tmp_name"], $uploaded_file_path);
-                    $sql = "UPDATE cr11_vedrana_petadoption.animals 
+            if (isset($_FILES["image"]) && $_FILES["image"]["error"] != UPLOAD_ERR_NO_FILE) {
+                $basename = basename($_FILES["image"]["name"]);
+                $uploaded_file_path = "../upload/" . $basename;
+                move_uploaded_file($_FILES["image"]["tmp_name"], $uploaded_file_path);
+                $sql = "UPDATE cr11_vedrana_petadoption.animals 
                 SET 
                     name = '$name',
                     date_of_birth = '$date_of_birth',
@@ -153,8 +153,8 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     image = '$basename',
                 WHERE
                     id = $id";
-                } else {
-                    $sql = "UPDATE cr11_vedrana_petadoption.animals 
+            } else {
+                $sql = "UPDATE cr11_vedrana_petadoption.animals 
                 SET 
                     name = '$name',
                     date_of_birth = '$date_of_birth',
@@ -166,20 +166,20 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     hobbies = '$hobbies' 
                 WHERE
                     id = $id";
-                }
+            }
 
-                if (mysqli_query($conn, $sql)) {
-                    echo "<div class=\"col-md-8\">
+            if (mysqli_query($conn, $sql)) {
+                echo "<div class=\"col-md-8\">
                 <h3 class='text-success'>Entry successfully updated!</h3>
                 <p>You are being redirected to the edit content page</p></div>";
-                    header("Refresh:2; url=../edit_index.php");
-                } else {
-                    echo "<div class=\"col-md-8\"><h3 class='text-danger'>There has been an error, please try again later!</h3>
+                header("Refresh:2; url=../edit_index.php");
+            } else {
+                echo "<div class=\"col-md-8\"><h3 class='text-danger'>There has been an error, please try again later!</h3>
                <p>go back to <a href='../index.php'>homepage</a></p></div>";
-                }
-                $conn->close();
+            }
+            $conn->close();
 
-                ?>
+            ?>
 
         </div>
 

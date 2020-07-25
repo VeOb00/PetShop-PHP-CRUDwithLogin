@@ -177,7 +177,8 @@ $resultUsers = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.users
                             <td><?= $username ?></td>
                             <td><?= $useremail ?></td>
                             <td>
-                                <form action="php_actions/a_change_status.php">
+                                <form action="php_actions/a_change_status.php" method="post">
+                                    <input type="hidden" name="id" value="<?= $id ?>">
                                     <select class="form-control form-control-sm" id="change_status" name="change_status"
                                             required>
                                         <option selected disabled>Change...</option>

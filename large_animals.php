@@ -3,6 +3,11 @@ ob_start();
 session_start();
 require_once 'php_actions/db_connect.php';
 
+if (!isset($_SESSION['user']) && !isset($_SESSION['admin']) && !isset($_SESSION['superadmin'])) {
+    header("Location: index.php");
+    exit;
+}
+
 $loggedUser = false;
 if (isset($_SESSION["user"])) {
     $loggedUser = true;
@@ -32,7 +37,7 @@ if ($loggedUser) {
     $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
 }
 
-$resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.animals where size = 'large'");
+$resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age from cr11_vedrana_petadoption.animals where size = 'large'");
 
 ?>
 
@@ -64,23 +69,25 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     </li>
                 <?php endif; ?>
                 <?php if (!$loggedAdmin) : ?>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
                     </li>
                 <?php endif; ?>
-                <?php if ($loggedUser || $loggedAdmin) : ?>
-                    <li class="nav-item">
+                <?php if ($loggedIn) : ?>
+                    <li class="nav-item active">
                         <a class="nav-link" href="large_animals.php">Large animals</a>
                     </li>
-                <?php endif; ?>
-                <?php if ($loggedUser || $loggedAdmin) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="small_animals.php">Small animals</a>
                     </li>
-                <?php endif; ?>
-                <?php if ($loggedUser || $loggedAdmin) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="senior_animals.php">Senior animals</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="general.php">Under 8 Years</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search_animals.php">Search</a>
                     </li>
                 <?php endif; ?>
             </ul>
@@ -148,6 +155,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     $gender = $value["gender"];
                     $description = $value["description"];
                     $hobbies = $value["hobbies"];
+                    $age = $value["age"];
                     ?>
 
                     <div class="col-md-6 col-xl-4 box card-group">
@@ -169,7 +177,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                                 <p>Hobbies: <?= $hobbies ?></p>
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
-                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $date_of_birth ?></span></p>
+                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
                                 <a href="animal_info.php?id=<?= $id ?>">
                                     <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                                 </a>

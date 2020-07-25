@@ -26,6 +26,7 @@ $resultAnimals = mysqli_query($conn, $sql);
                 $gender = $row["gender"];
                 $description = $row["description"];
                 $hobbies = $row["hobbies"];
+                $age = $row["age"];
                 ?>
                 <div class="col-md-6 col-xl-4 box card-group">
                     <div class="mb-3 card shadow-sm ">
@@ -46,7 +47,7 @@ $resultAnimals = mysqli_query($conn, $sql);
                             <p>Hobbies: <?= $hobbies ?></p>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $date_of_birth ?></span></p>
+                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
                             <a href="animal_info.php?id=<?= $id ?>">
                                 <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                             </a>
@@ -68,6 +69,7 @@ $resultAnimals = mysqli_query($conn, $sql);
                 $gender = $value["gender"];
                 $description = $value["description"];
                 $hobbies = $value["hobbies"];
+                $age = $value["age"];
                 ?>
 
                 <div class="col-md-6 col-xl-4 box card-group">
@@ -89,7 +91,7 @@ $resultAnimals = mysqli_query($conn, $sql);
                             <p>Hobbies: <?= $hobbies ?></p>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $date_of_birth ?></span></p>
+                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
                             <a href="animal_info.php?id=<?= $id ?>">
                                 <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                             </a>

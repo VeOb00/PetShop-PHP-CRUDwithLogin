@@ -3,6 +3,11 @@ ob_start();
 session_start();
 require_once 'php_actions/db_connect.php';
 
+if (!isset($_SESSION['user']) && !isset($_SESSION['admin']) && !isset($_SESSION['superadmin'])) {
+    header("Location: index.php");
+    exit;
+}
+
 $loggedUser = false;
 if (isset($_SESSION["user"])) {
     $loggedUser = true;
@@ -32,7 +37,7 @@ if ($loggedUser) {
     $userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
 }
 
-$resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.animals");
+$resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age from cr11_vedrana_petadoption.animals");
 
 ?>
 
@@ -65,7 +70,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     </li>
                 <?php endif; ?>
                 <?php if (!$loggedAdmin) : ?>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
                     </li>
                 <?php endif; ?>
@@ -78,6 +83,12 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="senior_animals.php">Senior animals</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="general.php">Under 8 Years</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="search_animals.php">Search</a>
                     </li>
                 <?php endif; ?>
             </ul>
@@ -156,7 +167,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
             crossorigin="anonymous"></script>
     <script>
         var request;
-        $("#search").keyup(function(event) {
+        $("#search").keyup(function (event) {
             event.preventDefault();
             if (request) {
                 request.abort();
