@@ -4,7 +4,7 @@ require_once 'db_connect.php';
 $search = $_POST["search"];
 // $search = isset($_POST["search"]) ? $_POST["search"] : "null"
 
-$sql = "SELECT * FROM cr11_vedrana_petadoption.animals WHERE name LIKE '%$search%' or type like '%$search%' or location like '%$search%' or size like '%$search%'";
+$sql = "SELECT *, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age FROM cr11_vedrana_petadoption.animals WHERE name LIKE '%$search%' or type like '%$search%' or location like '%$search%' or size like '%$search%'";
 
 $resultAnimals = mysqli_query($conn, $sql);
 ?>
@@ -47,7 +47,7 @@ $resultAnimals = mysqli_query($conn, $sql);
                             <p>Hobbies: <?= $hobbies ?></p>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
+                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span> years</p>
                             <a href="animal_info.php?id=<?= $id ?>">
                                 <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                             </a>
@@ -91,7 +91,7 @@ $resultAnimals = mysqli_query($conn, $sql);
                             <p>Hobbies: <?= $hobbies ?></p>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
+                            <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span> years</p>
                             <a href="animal_info.php?id=<?= $id ?>">
                                 <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                             </a>

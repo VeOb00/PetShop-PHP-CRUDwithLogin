@@ -170,7 +170,7 @@ $resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birt
                                 <p>Hobbies: <?= $hobbies ?></p>
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
-                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
+                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span> years</p>
                                 <a href="animal_info.php?id=<?= $id ?>">
                                     <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                                 </a>
@@ -215,7 +215,7 @@ $resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birt
                                 <p>Hobbies: <?= $hobbies ?></p>
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
-                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
+                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span> years</p>
                                 <a href="animal_info.php?id=<?= $id ?>">
                                     <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                                 </a>

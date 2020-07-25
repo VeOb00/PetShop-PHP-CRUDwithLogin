@@ -138,9 +138,9 @@ $resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birt
             <?php
             if ($resultAnimals->num_rows == 0) {
                 echo "Sorry, there is nothing in the database";
-            } else if ($resultAnimals->num_rows == 1) {
-                $row = $resultAnimals->fetch_assoc();
-                echo "only 1 result to show";
+//            } else if ($resultAnimals->num_rows == 1) {
+//                $row = $resultAnimals->fetch_assoc();
+//                echo "only 1 result to show";
             } else {
                 $rows = $resultAnimals->fetch_all(MYSQLI_ASSOC);
                 foreach ($rows as $value) {
@@ -176,7 +176,7 @@ $resultAnimals = mysqli_query($conn, "Select *, TIMESTAMPDIFF(YEAR, date_of_birt
                                 <p>Hobbies: <?= $hobbies ?></p>
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
-                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span></p>
+                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $age ?></span> years</p>
                                 <a href="animal_info.php?id=<?= $id ?>">
                                     <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
                                 </a>
