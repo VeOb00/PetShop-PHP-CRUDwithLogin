@@ -118,7 +118,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 if ($_GET["id"]) {
                 $id = $_GET["id"];
 
-                $sql = "SELECT * from cr11_vedrana_petadoption.animals where id = $id";
+                $sql = "SELECT *, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age from cr11_vedrana_petadoption.animals where id = $id";
                 $resultAnimals = mysqli_query($conn, $sql);
 
 
@@ -133,6 +133,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 $gender = $row["gender"];
                 $description = $row["description"];
                 $hobbies = $row["hobbies"];
+                $age = $row["age"];
                 ?>
 
                 <div class="col-md-5">
@@ -152,7 +153,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     <hr>
                     <dl>
                         <dt>Age:</dt>
-                        <dd><?= $date_of_birth . " years old, <small class='text-secondary'><address>" . $date_of_birth . "</address></small>" ?></dd>
+                        <dd><?= $age . " years old, <small class='text-secondary'><address>" . $date_of_birth . "</address></small>" ?></dd>
                         <dt>Animal size:</dt>
                         <dd><?= $size ?></dd>
                         <dt>Gender:</dt>
