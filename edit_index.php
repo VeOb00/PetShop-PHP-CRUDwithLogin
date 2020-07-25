@@ -120,67 +120,106 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 if ($resultAnimals->num_rows == 0) {
                     echo "Sorry, there is nothing in the database";
                 } else if ($resultAnimals->num_rows == 1) {
-                    $row = $resultAnimals->fetch_assoc();
-                    echo "only 1 result to show";
-                } else {
-                    $rows = $resultAnimals->fetch_all(MYSQLI_ASSOC);
-                    foreach ($rows as $value) {
-                        $id = $value["id"];
-                        $name = $value["name"];
-                        $date_of_birth = $value["date_of_birth"];
-                        $image = $value["image"];
-                        $size = $value["size"];
-                        $type = $value["type"];
-                        $location = $value["location"];
-                        $gender = $value["gender"];
-                        $description = $value["description"];
-                        $hobbies = $value["hobbies"];
-                        ?>
+                $row = $resultAnimals->fetch_assoc();
+                {
+                $id = $row["id"];
+                $name = $row["name"];
+                $date_of_birth = $row["date_of_birth"];
+                $image = $row["image"];
+                $size = $row["size"];
+                $type = $row["type"];
+                $location = $row["location"];
+                $gender = $row["gender"];
+                $description = $row["description"];
+                $hobbies = $row["hobbies"];
+                ?>
+                <div class="col-md-5 col-xl-3 box card-group">
+                    <div class="mb-3 card shadow-sm">
+                        <img src="<?= "upload/" . $image ?>" class="card-img-top"
+                             alt="<?= $name ?> image">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <?= $name; ?>
+                                <?php if ($gender == "female") : ?>
+                                    <img src="media/female.png" class="logo" alt="female">
+                                <?php endif; ?>
+                                <?php if ($gender == "male") : ?>
+                                    <img src="media/male.png" class="logo" alt="male">
+                                <?php endif; ?>
+                            </h3>
+                            <hr>
+                            <p>Location: <?= $location ?></p>
 
-                        <div class="col-md-5 col-xl-3 box card-group">
-                            <div class="mb-3 card shadow-sm">
-                                <img src="<?= "upload/" . $image ?>" class="card-img-top"
-                                     alt="<?= $name ?> image">
-                                <div class="card-body">
-                                    <h3 class="card-title">
-                                        <?= $name; ?>
-                                        <?php if ($gender == "female") : ?>
-                                            <img src="media/female.png" class="logo" alt="female">
-                                        <?php endif; ?>
-                                        <?php if ($gender == "male") : ?>
-                                            <img src="media/male.png" class="logo" alt="male">
-                                        <?php endif; ?>
-                                    </h3>
-                                    <hr>
-                                    <p>Location: <?= $location ?></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <p>ID Nr.: <?= $id ?></p>
+                            <a href="edit_animals.php?id=<?= $id ?>">
+                                <button class="btn btn-light btn-outline-secondary btn-sm">Edit this</button>
+                            </a>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    } else {
+                        $rows = $resultAnimals->fetch_all(MYSQLI_ASSOC);
+                        foreach ($rows as $value) {
+                            $id = $value["id"];
+                            $name = $value["name"];
+                            $date_of_birth = $value["date_of_birth"];
+                            $image = $value["image"];
+                            $size = $value["size"];
+                            $type = $value["type"];
+                            $location = $value["location"];
+                            $gender = $value["gender"];
+                            $description = $value["description"];
+                            $hobbies = $value["hobbies"];
+                            ?>
 
-                                </div>
-                                <div class="card-footer d-flex justify-content-between align-items-center">
-                                    <p>ID Nr.: <?= $id ?></p>
-                                    <a href="edit_animals.php?id=<?= $id ?>">
-                                        <button class="btn btn-light btn-outline-secondary btn-sm">Edit this</button>
-                                    </a>
+                            <div class="col-md-5 col-xl-3 box card-group">
+                                <div class="mb-3 card shadow-sm">
+                                    <img src="<?= "upload/" . $image ?>" class="card-img-top"
+                                         alt="<?= $name ?> image">
+                                    <div class="card-body">
+                                        <h3 class="card-title">
+                                            <?= $name; ?>
+                                            <?php if ($gender == "female") : ?>
+                                                <img src="media/female.png" class="logo" alt="female">
+                                            <?php endif; ?>
+                                            <?php if ($gender == "male") : ?>
+                                                <img src="media/male.png" class="logo" alt="male">
+                                            <?php endif; ?>
+                                        </h3>
+                                        <hr>
+                                        <p>Location: <?= $location ?></p>
+
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between align-items-center">
+                                        <p>ID Nr.: <?= $id ?></p>
+                                        <a href="edit_animals.php?id=<?= $id ?>">
+                                            <button class="btn btn-light btn-outline-secondary btn-sm">Edit this
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <?php
+                            <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                crossorigin="anonymous"></script>
     </body>
     </html>
 

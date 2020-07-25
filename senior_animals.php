@@ -67,17 +67,17 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
                     </li>
                 <?php endif; ?>
-                <?php if ($loggedUser || $loggedAdmin) : ?>
+                <?php if ($loggedIn) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="large_animals.php">Large animals</a>
                     </li>
                 <?php endif; ?>
-                <?php if ($loggedUser || $loggedAdmin) : ?>
+                <?php if ($loggedIn) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="small_animals.php">Small animals</a>
                     </li>
                 <?php endif; ?>
-                <?php if ($loggedUser || $loggedAdmin) : ?>
+                <?php if ($loggedIn) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="senior_animals.php">Senior animals</a>
                     </li>

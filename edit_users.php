@@ -120,7 +120,6 @@ $resultUsers = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.users
                     <th>Status</th>
                     <th></th>
                     <th></th>
-<!--                    <th>Edit Status</th>-->
                 </tr>
                 </thead>
                 <?php
@@ -128,8 +127,43 @@ $resultUsers = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.users
                     echo "Sorry, there are currently no users registered.";
                 } else if ($resultUsers->num_rows == 1) {
                     $row = $resultUsers->fetch_assoc();
-                    echo "only 1 result to show";
-//                    todo edit 1 results
+                    {
+                        $id = $row["id"];
+                        $username = $row["username"];
+                        $useremail = $row["useremail"];
+                        $status = $row["status"];
+                        ?>
+                        <tr>
+                            <td><?= $id ?></td>
+                            <td><?= $username ?></td>
+                            <td><?= $useremail ?></td>
+                            <td>
+                                <form action="php_actions/a_change_status.php">
+                                    <select class="form-control form-control-sm" id="change_status" name="change_status"
+                                            required>
+                                        <option selected disabled>Change...</option>
+                                        <option <?php if ($status == "user") : ?> selected <?php endif; ?> >user
+                                        </option>
+                                        <option <?php if ($status == "admin") : ?> selected <?php endif; ?> >admin
+                                        </option>
+                                        <option <?php if ($status == "superadmin") : ?> selected <?php endif; ?> >
+                                            superadmin
+                                        </option>
+                                    </select>
+
+                            </td>
+                            <td><input class="btn btn-success form-control-sm btn-sm" type="submit"
+                                       value="Update Status"></td>
+                            </form>
+                            <td>
+                                <form action="php_actions/a_delete_user.php" method="post">
+                                    <input type="hidden" name="id" value="<?= $id ?>">
+                                    <input class="btn btn-danger form-control-sm btn-sm" type="submit"
+                                           value="Delete User">
+                                </form>
+                            </td>
+                        </tr>
+                    <?php }
                 } else {
                     $rows = $resultUsers->fetch_all(MYSQLI_ASSOC);
                     foreach ($rows as $value) {
@@ -142,23 +176,29 @@ $resultUsers = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.users
                             <td><?= $id ?></td>
                             <td><?= $username ?></td>
                             <td><?= $useremail ?></td>
-<!--                            <td class="text-secondary">--><?//= $status ?><!--</td>-->
                             <td>
-                                <form action="php_actions/a_change_status.php" >
-                                    <select class="form-control form-control-sm" id="change_status" name="change_status" required>
+                                <form action="php_actions/a_change_status.php">
+                                    <select class="form-control form-control-sm" id="change_status" name="change_status"
+                                            required>
                                         <option selected disabled>Change...</option>
-                                        <option <?php if ($status == "user") : ?> selected <?php endif; ?> >user</option>
-                                        <option <?php if ($status == "admin") : ?> selected <?php endif; ?> >admin</option>
-                                        <option <?php if ($status == "superadmin") : ?> selected <?php endif; ?> >superadmin</option>
+                                        <option <?php if ($status == "user") : ?> selected <?php endif; ?> >user
+                                        </option>
+                                        <option <?php if ($status == "admin") : ?> selected <?php endif; ?> >admin
+                                        </option>
+                                        <option <?php if ($status == "superadmin") : ?> selected <?php endif; ?> >
+                                            superadmin
+                                        </option>
                                     </select>
 
                             </td>
-                            <td><input class="btn btn-success form-control-sm btn-sm" type="submit" value="Update Status"></td>
+                            <td><input class="btn btn-success form-control-sm btn-sm" type="submit"
+                                       value="Update Status"></td>
                             </form>
                             <td>
                                 <form action="php_actions/a_delete_user.php" method="post">
                                     <input type="hidden" name="id" value="<?= $id ?>">
-                                    <input class="btn btn-danger form-control-sm btn-sm"type="submit" value="Delete User">
+                                    <input class="btn btn-danger form-control-sm btn-sm" type="submit"
+                                           value="Delete User">
                                 </form>
                             </td>
                         </tr>

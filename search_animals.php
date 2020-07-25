@@ -79,9 +79,6 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     <li class="nav-item">
                         <a class="nav-link" href="senior_animals.php">Senior animals</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search_animals.php">Search animals</a>
-                    </li>
                 <?php endif; ?>
             </ul>
 
@@ -109,7 +106,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
         </div>
     </nav>
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid mb-0">
         <div class="container">
             <h1 class="display-4 mt-3">Adopt don't shop!</h1>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi eos harum obcaecati
@@ -118,6 +115,18 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 Ducimus eaque molestias quo!</p>
         </div>
     </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <?php if ($loggedIn) : ?>
+                <form class="form-inline mx-auto my-lg-0">
+                    <label class="mr-sm-2" for="search">Search animals by name, type, size or location: </label>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                           name="search" id="search">
+                </form>
+            <?php endif; ?>
+        </div>
+    </nav>
 
     <div class="container">
         <?php if (!$loggedIn) : ?>
@@ -130,104 +139,14 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
         <?php endif; ?>
 
         <div class="row">
-            <?php
-            if ($resultAnimals->num_rows == 0) {
-                echo "Sorry, there is nothing in the database";
-            } else if ($resultAnimals->num_rows == 1) {
-                $row = $resultAnimals->fetch_assoc();
-                {
-                    $id = $row["id"];
-                    $name = $row["name"];
-                    $date_of_birth = $row["date_of_birth"];
-                    $image = $row["image"];
-                    $size = $row["size"];
-                    $type = $row["type"];
-                    $location = $row["location"];
-                    $gender = $row["gender"];
-                    $description = $row["description"];
-                    $hobbies = $row["hobbies"];
-                    ?>
-                    <div class="col-md-6 col-xl-4 box card-group">
-                        <div class="mb-3 card shadow-sm ">
-                            <img src="<?= "upload/" . $image ?>" class="card-img-top"
-                                 alt="<?= $name ?> image">
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    <?= $name; ?>
-                                    <?php if ($gender == "female") : ?>
-                                        <img src="media/female.png" class="logo" alt="female">
-                                    <?php endif; ?>
-                                    <?php if ($gender == "male") : ?>
-                                        <img src="media/male.png" class="logo" alt="male">
-                                    <?php endif; ?>
-                                </h3>
-                                <hr>
-                                <p>Location: <?= $location ?></p>
-                                <p>Hobbies: <?= $hobbies ?></p>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $date_of_birth ?></span></p>
-                                <a href="animal_info.php?id=<?= $id ?>">
-                                    <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
+            <p id="result"></p>
 
-            } else {
-                $rows = $resultAnimals->fetch_all(MYSQLI_ASSOC);
-                foreach ($rows as $value) {
-                    $id = $value["id"];
-                    $name = $value["name"];
-                    $date_of_birth = $value["date_of_birth"];
-                    $image = $value["image"];
-                    $size = $value["size"];
-                    $type = $value["type"];
-                    $location = $value["location"];
-                    $gender = $value["gender"];
-                    $description = $value["description"];
-                    $hobbies = $value["hobbies"];
-                    ?>
 
-                    <div class="col-md-6 col-xl-4 box card-group">
-                        <div class="mb-3 card shadow-sm ">
-                            <img src="<?= "upload/" . $image ?>" class="card-img-top"
-                                 alt="<?= $name ?> image">
-                            <div class="card-body">
-                                <h3 class="card-title">
-                                    <?= $name; ?>
-                                    <?php if ($gender == "female") : ?>
-                                        <img src="media/female.png" class="logo" alt="female">
-                                    <?php endif; ?>
-                                    <?php if ($gender == "male") : ?>
-                                        <img src="media/male.png" class="logo" alt="male">
-                                    <?php endif; ?>
-                                </h3>
-                                <hr>
-                                <p>Location: <?= $location ?></p>
-                                <p>Hobbies: <?= $hobbies ?></p>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                <p class="mb-0">Age: <span class="font-weight-bolder"><?= $date_of_birth ?></span></p>
-                                <a href="animal_info.php?id=<?= $id ?>">
-                                    <button class="btn btn-light btn-outline-secondary btn-sm">More info</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php
-                }
-            }
-            ?>
         </div>
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    <script
+            src="https://code.jquery.com/jquery-3.4.0.min.js"
+            integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -235,6 +154,46 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+    <script>
+        var request;
+        $("#search").keyup(function(event) {
+            event.preventDefault();
+            if (request) {
+                request.abort();
+            }
+            var $form = $(this);
+            var $inputs = $form.find("input, select, button, textarea");
+            var serializedData = $form.serialize();
+            var search = document.getElementById("search").value;
+            if (search.length > 0) {
+                $inputs.prop("disabled", true);
+
+                request = $.ajax({
+                    url: "php_actions/a_search_animals.php",
+                    type: "post",
+                    data: serializedData
+                });
+
+                request.done(function (response, textStatus, jqXHR) {
+                    document.getElementById("result").innerHTML = response;
+                    // console.log(response);
+                });
+
+                request.fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error(
+                        "The following error occurred: " +
+                        textStatus, errorThrown
+                    );
+                });
+
+                request.always(function () {
+                    $inputs.prop("disabled", false);
+                });
+            } else {
+                document.getElementById("result").innerHTML = "";
+            }
+        });
+    </script>
     </body>
     </html>
 <?php ob_end_flush(); ?>
