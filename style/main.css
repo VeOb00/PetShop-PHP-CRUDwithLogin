@@ -9,10 +9,17 @@ img {
 }
 
 .jumbotron {
-  background-image: url("../media/hero.jpg");
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)), url("../media/hero.jpg");
   background-size: cover;
   background-position: center;
-  height: 40vh;
+}
+
+li {
+  margin: auto 0;
+}
+
+.lead {
+  font-weight: normal;
 }
 
 .card-img-top {

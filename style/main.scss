@@ -1,9 +1,3 @@
-$colormain: #EDA4B2;
-$colorsecondary: #6E4C52;
-$colorsecondary2: #AD7882;
-$colorsecondary3: #D4929F;
-$colorsecondary4: #BAAAA6;
-
 img {
   width: 100%;
 }
@@ -15,11 +9,18 @@ img {
 }
 
 .jumbotron {
-  //background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3)), url("../media/hero.jpg");
-  background-image: url("../media/hero.jpg");
+  background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.5)), url("../media/hero.jpg");
+  //background-image: url("../media/hero.jpg");
   background-size: cover;
   background-position: center;
-  height: 40vh;
+}
+
+li {
+  margin: auto 0;
+}
+
+.lead {
+  font-weight: normal;
 }
 
 .card-img-top {
