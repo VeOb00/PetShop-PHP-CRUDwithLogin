@@ -130,8 +130,7 @@ if ($loggedAdmin) {
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="type">Animal type:</label>
-                            <input type="text" class="form-control" id="type" name="type" value="">
-
+                            <input type="text" class="form-control" id="type" name="type" value="" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -152,7 +151,7 @@ if ($loggedAdmin) {
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="location">Location:</label>
-                            <input type="text" class="form-control" id="location" name="location" value="">
+                            <input type="text" class="form-control" id="location" name="location" value="" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="size">Animal size:</label>

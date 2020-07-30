@@ -183,7 +183,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="type">Animal type:</label>
-                        <input type="text" class="form-control" id="type" name="type" value="<?= $type ?>">
+                        <input type="text" class="form-control" id="type" name="type" value="<?= $type ?>" required>
 
                     </div>
                 </div>
@@ -205,7 +205,7 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="location">Location:</label>
-                        <input type="text" class="form-control" id="location" name="location" value="<?= $location ?>">
+                        <input type="text" class="form-control" id="location" name="location" value="<?= $location ?>" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="size">Animal size:</label>
@@ -227,7 +227,6 @@ $resultAnimals = mysqli_query($conn, "Select * from cr11_vedrana_petadoption.ani
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                         <label for="description">Short description</label>
-
                         <textarea class="form-control" id="description" rows="6"
                                   name="description"><?php echo htmlspecialchars($description); ?></textarea>
                         <small class="form-text text-muted">Optional</small>
